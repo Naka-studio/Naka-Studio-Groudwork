@@ -1,0 +1,32 @@
+❯ trx                                                              ─╯
+.
+├── database
+│   ├── schema.sql
+│   └── seed.sql
+├── package-lock.json
+├── package.json
+├── server.js
+├── src
+│   ├── app.js
+│   ├── config
+│   │   └── db.js
+│   ├── controllers
+│   │   ├── auth.js
+│   │   ├── availability.js
+│   │   ├── blog.js
+│   │   ├── contact.js
+│   │   ├── pricing.js
+│   │   ├── projects.js
+│   │   ├── services.js
+│   │   └── testimonials.js
+│   ├── middleware                                                    │   │   ├── auth.js
+│   │   └── errorHandler.js                                           │   └── routes
+│       ├── auth.js
+│       ├── availability.js
+│       ├── blog.js
+│       ├── contact.js
+│       ├── pricing.js
+│       ├── projects.js                                               │       ├── services.js
+│       └── testimonials.js
+└── vercel.json                                                       
+7 directories, 26 files                                               
