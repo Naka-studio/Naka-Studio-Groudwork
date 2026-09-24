@@ -297,8 +297,8 @@ CREATE TABLE ops.capacity_config (
 CREATE VIEW ops.active_capacity AS
 SELECT
   (SELECT max_active_slots FROM ops.capacity_config WHERE id = 1) AS max_slots,
-  COUNT(*) AS used_slots,
-  (SELECT max_active_slots FROM ops.capacity_config WHERE id = 1) - COUNT(*) AS available_slots
+  COUNT(*)::int AS used_slots,
+  ((SELECT max_active_slots FROM ops.capacity_config WHERE id = 1) - COUNT(*))::int AS available_slots
 FROM ops.projects
 WHERE capacity_slot = true
   AND status NOT IN ('CLOSED', 'MAINTENANCE');

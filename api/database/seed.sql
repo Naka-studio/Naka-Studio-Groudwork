@@ -122,5 +122,5 @@ INSERT INTO contact_info (id, wa, email, instagram, youtube, linkedin, github, p
 \c naka_studio;
 
 INSERT INTO ops.capacity_config (id, max_active_slots)
-VALUES (1, 2)
+VALUES (1, 3)
 ON CONFLICT (id) DO NOTHING;
