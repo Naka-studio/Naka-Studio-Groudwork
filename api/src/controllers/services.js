@@ -110,8 +110,31 @@ const updateService = async (req, res, next) => {
   }
 };
 
+const updateAvailability = async (req, res, next) => {
+  const { status, message } = req.body
+  const allowed = ['available', 'limited', 'unavailable']
+
+  if (!allowed.includes(status))
+    return res.status(400).json({ success: false, message: 'Invalid status' })
+
+  try {
+    const { rowCount } = await pool.query(
+      `INSERT INTO availability (service_id, status, message)
+       VALUES ($1, $2, $3)
+       ON CONFLICT (service_id)
+       DO UPDATE SET status = $2, message = $3, updated_at = CURRENT_TIMESTAMP`,
+      [req.params.id, status, message ?? null]
+    )
+
+    res.json({ success: true, message: 'Availability updated' })
+  } catch (err) {
+    next(err)
+  }
+};
+
 module.exports = {
   getServices,
   getServiceById,
   updateService,
+	updateAvailability,
 };
